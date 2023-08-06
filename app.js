@@ -26,6 +26,8 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(StudentRoutes);
 
-app.listen(5500, (request, response) => {
+port = process.env.port || 5500;
+
+app.listen(port, (request, response) => {
   console.log("server running on 5500 port");
 });
