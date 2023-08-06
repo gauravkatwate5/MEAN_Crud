@@ -1,33 +1,18 @@
 const express = require("express");
-const mongoose = require("mongoose");
+require("./db/connection");
 const StudentRoutes = require("./routes/StudentRoute");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
 const app = express();
 
-//database connection
-const DatabasePathOnline =
-  "mongodb+srv://gauravkatwate5:gauravkatwate5@batches.nzpf9su.mongodb.net/?retryWrites=true&w=majority";
-
-const DatabasePathLocal = "mongodb://localhost:27017/crud";
-
-mongoose
-  .connect(DatabasePathOnline)
-  .then(() => {
-    console.log("Database Connected Successfully");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
 app.use(StudentRoutes);
 
-port = process.env.port || 5500;
+const PORT = process.env.PORT || 5500;
 
-app.listen(port, (request, response) => {
-  console.log("server running on 5500 port");
+app.listen(PORT, (request, response) => {
+  console.log(`server running on ${PORT} port`);
 });
